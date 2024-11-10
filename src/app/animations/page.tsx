@@ -12,6 +12,12 @@ const AnimationsPage = () => {
               <div className=" h-10 w-1 bg-white rounded-sm absolute group-hover:-rotate-90 transition-all duration-100"></div>
             </div>
           </div>
+          <div className=" border border-gray-700 rounded-md aspect-square w-full ">
+            <div className=" relative flex items-center justify-center h-full group ">
+              <div className=" h-1 w-10 bg-white rounded-sm absolute group-hover:rotate-45 transition-all duration-100"></div>
+              <div className=" h-10 w-1 bg-white rounded-sm absolute group-hover:rotate-45 transition-all duration-100"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
