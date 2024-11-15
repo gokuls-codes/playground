@@ -3,7 +3,7 @@ import React from "react";
 const AnimationsPage = () => {
   return (
     <div className="  p-8">
-      <div className=" w-full lg:max-w-[70vw] mx-auto space-y-6">
+      <main className=" w-full lg:max-w-[70vw] mx-auto space-y-6">
         <h1 className=" text-4xl font-semibold">Animations</h1>
         <div className=" grid grid-cols-3 lg:grid-cols-6 place-items-center w-full gap-4">
           <div className=" border border-gray-700 rounded-md h-[120px] w-full ">
@@ -40,7 +40,7 @@ const AnimationsPage = () => {
             <div className=" w-[calc(100%-2rem)] h-1 bg-white rounded-sm absolute scale-x-0 group-hover:scale-x-100 transition-all duration-300 origin-left"></div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
