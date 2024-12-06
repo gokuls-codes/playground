@@ -1,12 +1,7 @@
 "use client";
 
-import {
-  motion,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from "motion/react";
-import React, { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
+import React, { useRef } from "react";
 
 const ScrollLinkedSection = () => {
   const targetRef = useRef<HTMLElement | null>(null);
