@@ -1,3 +1,4 @@
+import InputWithOptions from "@/components/input-with-options";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
@@ -28,6 +29,10 @@ const ComponentsPage = () => {
               Label
             </Label>
           </div>
+        </div>
+        <div className=" w-full p-4 border border-border rounded-md space-y-4">
+          <h2 className=" font-semibold text-xl">Input with options</h2>
+          <InputWithOptions />
         </div>
       </main>
     </div>
