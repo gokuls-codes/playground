@@ -2,8 +2,8 @@ import InfiniteScroll from "@/components/test/infinite-scroll";
 import ListItem from "@/components/test/list-item";
 import React from "react";
 
-// export const dynamic = "force-dynamic";
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
+// export const dynamic = "force-static";
 
 const InfiniteScrollPage = async () => {
   const renderedRowsCount = 5;

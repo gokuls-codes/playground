@@ -8,7 +8,7 @@ const InfiniteScroll = ({ children }: { children?: React.ReactNode[] }) => {
   const numberOfRows = 100;
 
   const [scrollTop, setScrollTop] = useState(0);
-  let startIndex = Math.max(0, Math.floor(scrollTop / elementHeight));
+  const startIndex = Math.max(0, Math.floor(scrollTop / elementHeight));
   const renderedRows = 5;
   //   let renderedNodesCount = 40;
   const nodesPerRow = 4;
