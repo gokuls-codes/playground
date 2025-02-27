@@ -14,6 +14,9 @@ const InfiniteScrollPage = async () => {
 
   const data = await res.json();
 
+  const temp = await new Promise((r) => setTimeout(r, 2000));
+  console.log(temp);
+
   console.log(data);
 
   return (
