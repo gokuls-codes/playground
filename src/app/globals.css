@@ -65,3 +65,44 @@ body {
     scrollbar-width: none; /* Firefox */
   }
 }
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card {
+  height: 500px;
+  width: 300px;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: -2;
+  z-index: -10;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    black,
+    black,
+    black,
+    black,
+    black,
+    black,
+    black,
+    black,
+    cyan
+  );
+  animation: rotation 5s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
