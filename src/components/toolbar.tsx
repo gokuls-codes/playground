@@ -6,7 +6,8 @@ import { type Editor } from "@tiptap/react";
 import { Toggle } from "./ui/toggle";
 import {
   Bold,
-  Heading2,
+  Heading,
+  Image,
   Italic,
   Link,
   List,
@@ -21,6 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
 
 const Toolbar = ({ editor }: { editor: Editor | null }) => {
   if (!editor) return;
@@ -31,10 +33,10 @@ const Toolbar = ({ editor }: { editor: Editor | null }) => {
         size={"sm"}
         pressed={editor.isActive("heading")}
         onPressedChange={() =>
-          editor.chain().focus().toggleHeading({ level: 2 }).run()
+          editor.chain().focus().toggleHeading({ level: 1 }).run()
         }
       >
-        <Heading2 className=" size-4" />
+        <Heading className=" size-4" />
       </Toggle>
       <Toggle
         size={"sm"}
@@ -76,6 +78,8 @@ const Toolbar = ({ editor }: { editor: Editor | null }) => {
         <ListOrdered className=" size-4" />
       </Toggle>
 
+      <Separator orientation="vertical" />
+
       <Toggle size={"sm"} pressed={editor.isActive("link")}>
         <Link className=" size-4" />
       </Toggle>
@@ -108,6 +112,27 @@ const Toolbar = ({ editor }: { editor: Editor | null }) => {
           </Button>
         </PopoverContent>
       </Popover>
+
+      <Separator orientation="vertical" />
+
+      <Button
+        size={"sm"}
+        variant={"ghost"}
+        type="button"
+        onClick={() =>
+          editor
+            .chain()
+            .focus()
+            .setImage({
+              src: "https://pet-health-content-media.chewy.com/wp-content/uploads/2024/09/11171635/202105GettyImages-1467947700-scaled-1.jpg",
+              title: "Shih tzu",
+              alt: "Picture of a Shih tzu",
+            })
+            .run()
+        }
+      >
+        <Image />
+      </Button>
     </div>
   );
 };
