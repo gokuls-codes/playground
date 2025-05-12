@@ -10,11 +10,11 @@ const ScrollLinkedSection = () => {
     // offset: ["end end", "end start"],
   });
 
-  const translateY = useTransform(scrollYProgress, [0, 1], ["0", "-67%"]);
+  const translateY = useTransform(scrollYProgress, [0, 1], ["0", "-50%"]);
   const translateYReverse = useTransform(
     scrollYProgress,
     [0, 1],
-    ["-67%", "0%"]
+    ["-50%", "0%"]
   );
 
   return (
@@ -43,6 +43,14 @@ const ScrollLinkedSection = () => {
             <div className=" w-full h-[400px] bg-yellow-500"></div>
             <div className=" w-full h-[400px] bg-orange-500"></div>
             <div className=" w-full h-[400px] bg-red-500"></div>
+            <div className=" w-full h-[400px] bg-violet-500"></div>
+            <div className=" w-full h-[400px] bg-indigo-500"></div>
+
+            <div className=" w-full h-[400px] bg-blue-500"></div>
+            <div className=" w-full h-[400px] bg-green-500"></div>
+            <div className=" w-full h-[400px] bg-yellow-500"></div>
+            <div className=" w-full h-[400px] bg-orange-500"></div>
+            <div className=" w-full h-[400px] bg-red-500"></div>
           </motion.div>
         </div>
 
@@ -54,6 +62,14 @@ const ScrollLinkedSection = () => {
               translateY: translateYReverse,
             }}
           >
+            <div className=" w-full h-[400px] bg-violet-500"></div>
+            <div className=" w-full h-[400px] bg-indigo-500"></div>
+
+            <div className=" w-full h-[400px] bg-blue-500"></div>
+            <div className=" w-full h-[400px] bg-green-500"></div>
+            <div className=" w-full h-[400px] bg-yellow-500"></div>
+            <div className=" w-full h-[400px] bg-orange-500"></div>
+            <div className=" w-full h-[400px] bg-red-500"></div>
             <div className=" w-full h-[400px] bg-violet-500"></div>
             <div className=" w-full h-[400px] bg-indigo-500"></div>
 
