@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { type Editor } from "@tiptap/react";
 
 import { Toggle } from "./ui/toggle";

@@ -1,9 +1,5 @@
 import React from "react";
 import { generateHTML } from "@tiptap/html";
-import Bold from "@tiptap/extension-bold";
-import Document from "@tiptap/extension-document";
-import Paragraph from "@tiptap/extension-paragraph";
-import Text from "@tiptap/extension-text";
 import StarterKit from "@tiptap/starter-kit";
 import Image from "@tiptap/extension-image";
 import Heading from "@tiptap/extension-heading";
