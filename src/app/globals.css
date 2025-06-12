@@ -99,3 +99,15 @@ body {
     --gradient-angle: 360deg;
   }
 }
+
+@media (min-width: 30rem) {
+  .zoom-div {
+    @apply bg-violet-400;
+  }
+}
+
+@media (min-width: 24rem) {
+  .zoom-div {
+    @apply bg-pink-400;
+  }
+}
