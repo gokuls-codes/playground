@@ -5,7 +5,12 @@ import StarterKit from "@tiptap/starter-kit";
 import Toolbar from "./toolbar";
 import Heading from "@tiptap/extension-heading";
 import BulletList from "@tiptap/extension-bullet-list";
+import OrderedList from "@tiptap/extension-ordered-list";
+
 import Link from "@tiptap/extension-link";
+
+import Image from "@tiptap/extension-image";
+import FloatingMenuContent from "./floating-ment";
 
 const Tiptap = ({
   description,
@@ -34,6 +39,12 @@ const Tiptap = ({
           class: " underline underline-offset-4",
         },
       }),
+      Image,
+      OrderedList.configure({
+        HTMLAttributes: {
+          class: "list-decimal pl-5", // Tailwind classes for ordered list (example)
+        },
+      }),
     ],
     content: description,
     editorProps: {
@@ -43,7 +54,7 @@ const Tiptap = ({
       },
     },
     onUpdate: ({ editor }) => {
-      onChange(editor.getHTML());
+      onChange(JSON.stringify(editor.getJSON()));
       console.log(editor.getJSON());
     },
     immediatelyRender: false,
@@ -53,6 +64,7 @@ const Tiptap = ({
     <div className=" w-full space-y-2">
       <Toolbar editor={editor} />
       <EditorContent editor={editor} />
+      <FloatingMenuContent editor={editor} />
     </div>
   );
 };
