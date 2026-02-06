@@ -8,6 +8,8 @@ interface VirtualizedListProps {
   itemsPerRow: number;
   renderItem: (index: number) => React.ReactNode;
   buffer?: number;
+  onEndReached?: () => void;
+  onEndReachedThreshold?: number;
 }
 
 const VirtualizedList = ({
@@ -16,21 +18,39 @@ const VirtualizedList = ({
   itemsPerRow,
   renderItem,
   buffer = 2,
+  onEndReached,
+  onEndReachedThreshold = 1000,
 }: VirtualizedListProps) => {
   const [scrollTop, setScrollTop] = useState(0);
   const rafRef = useRef<number | null>(null);
 
   const totalRows = Math.ceil(totalItems / itemsPerRow);
-  const viewportHeight = 800; // This should ideally be measured, but hardcoded for now
+  const viewportHeight = 800;
 
-  const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  const handleScroll = useCallback(
+    (e: React.UIEvent<HTMLDivElement>) => {
+      const {
+        scrollTop: targetScrollTop,
+        scrollHeight,
+        clientHeight,
+      } = e.currentTarget;
 
-    const targetScrollTop = e.currentTarget.scrollTop;
-    rafRef.current = requestAnimationFrame(() => {
-      setScrollTop(targetScrollTop);
-    });
-  }, []);
+      // Check if we're near the bottom to trigger more loading
+      if (
+        onEndReached &&
+        scrollHeight - targetScrollTop - clientHeight < onEndReachedThreshold
+      ) {
+        onEndReached();
+      }
+
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+
+      rafRef.current = requestAnimationFrame(() => {
+        setScrollTop(targetScrollTop);
+      });
+    },
+    [onEndReached, onEndReachedThreshold],
+  );
 
   const startRow = Math.max(0, Math.floor(scrollTop / itemHeight) - buffer);
   const endRow = Math.min(
@@ -47,7 +67,7 @@ const VirtualizedList = ({
 
   return (
     <div
-      className="flex-1 overflow-y-auto no-scrollbar outline-none"
+      className="flex-1 overflow-y-auto outline-none"
       onScroll={handleScroll}
       style={{ height: "100%" }}
     >
