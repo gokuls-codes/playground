@@ -1,12 +1,13 @@
 import React from "react";
-import { type Editor, FloatingMenu } from "@tiptap/react";
+import { type Editor } from "@tiptap/react";
+import { FloatingMenu } from "@tiptap/react/menus";
 import { Button } from "./ui/button";
 
 const FloatingMenuContent = ({ editor }: { editor: Editor | null }) => {
   if (!editor) return;
 
   return (
-    <FloatingMenu editor={editor} tippyOptions={{ duration: 100 }}>
+    <FloatingMenu editor={editor}>
       <div data-testid="floating-menu" className="floating-menu">
         <Button
           type="button"

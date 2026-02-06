@@ -131,7 +131,7 @@ const Toolbar = ({ editor }: { editor: Editor | null }) => {
             .run()
         }
       >
-        <Image />
+        <Image aria-label="Insert image" />
       </Button>
     </div>
   );

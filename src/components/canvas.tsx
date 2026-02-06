@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -13,7 +13,7 @@ const Canvas = () => {
 
     // Function to resize canvas to fit parent
     const resizeCanvas = () => {
-      const parent = canvas.parentElement;
+      const parent = canvas.parentElement as HTMLElement;
       if (parent) {
         const { width, height } = parent.getBoundingClientRect();
         canvas.width = width;
