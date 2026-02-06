@@ -83,7 +83,7 @@ const VirtualizedList = ({
             transform: `translateY(${startRow * itemHeight}px)`,
             willChange: "transform",
           }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full"
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 w-full"
         >
           {visibleItems}
         </div>

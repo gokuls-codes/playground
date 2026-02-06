@@ -18,11 +18,33 @@ const PostListClient = ({ initialPosts }: PostListClientProps) => {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [mounted, setMounted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(2); // Since page 1 is SSR'd
+  const [page, setPage] = useState(2);
+  const [itemsPerRow, setItemsPerRow] = useState(4);
+  const [itemHeight, setItemHeight] = useState(400);
   const hasMoreRef = useRef(true);
 
+  // Responsive logic to match Tailwind breakpoints
   useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+
+      // Update itemsPerRow and itemHeight consistently
+      if (width < 640) {
+        setItemsPerRow(1);
+        setItemHeight(350); // Slightly shorter cards for mobile list
+      } else if (width < 1280) {
+        setItemsPerRow(2);
+        setItemHeight(380); // Moderate height for tablet
+      } else {
+        setItemsPerRow(4);
+        setItemHeight(400); // Standard height for desktop
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
     setMounted(true);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const loadMore = useCallback(async () => {
@@ -30,9 +52,7 @@ const PostListClient = ({ initialPosts }: PostListClientProps) => {
 
     setIsLoading(true);
     try {
-      // Simulate network delay for a more realistic feel
       await new Promise((resolve) => setTimeout(resolve, 600));
-
       const res = await fetch(
         `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=20`,
       );
@@ -51,18 +71,19 @@ const PostListClient = ({ initialPosts }: PostListClientProps) => {
     }
   }, [isLoading, page]);
 
-  // For SEO/Initial Load: Render until hydrated
+  // Fallback for SSR/SEO (JS disabled)
   if (!mounted) {
     return (
       <div className="flex-1 overflow-y-auto w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 w-full">
           {posts.map((post, index) => (
-            <AntigravityCard
-              key={post.id + "-" + index}
-              index={index}
-              title={post.title}
-              body={post.body}
-            />
+            <div key={post.id + "-" + index} className="h-[400px]">
+              <AntigravityCard
+                index={index}
+                title={post.title}
+                body={post.body}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -72,18 +93,22 @@ const PostListClient = ({ initialPosts }: PostListClientProps) => {
   return (
     <div className="flex-1 flex flex-col min-h-0 relative h-full">
       <VirtualizedList
-        itemHeight={400}
+        itemHeight={itemHeight}
         totalItems={posts.length}
-        itemsPerRow={4}
+        itemsPerRow={itemsPerRow}
         buffer={3}
         onEndReached={loadMore}
         renderItem={(index) => (
-          <AntigravityCard
+          <div
             key={posts[index].id + "-" + index}
-            index={index}
-            title={posts[index].title}
-            body={posts[index].body}
-          />
+            style={{ height: itemHeight }}
+          >
+            <AntigravityCard
+              index={index}
+              title={posts[index].title}
+              body={posts[index].body}
+            />
+          </div>
         )}
       />
       {isLoading && (

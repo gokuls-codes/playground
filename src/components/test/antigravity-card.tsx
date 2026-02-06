@@ -9,11 +9,9 @@ interface AntigravityCardProps {
 }
 
 const AntigravityCard = ({ index, title, body }: AntigravityCardProps) => {
-  // Using CSS-based animations (tailwindcss-animate) instead of Framer Motion
-  // This ensures the cards are visible even if JavaScript is disabled.
   return (
     <div
-      className="p-3 h-[400px] animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both"
+      className="p-3 h-full animate-in fade-in slide-in-from-bottom-4 duration-700 fill-mode-both"
       style={{ animationDelay: `${(index % 4) * 100}ms` }}
     >
       <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-neutral-900 border border-neutral-800 p-6 transition-all hover:border-cyan-500/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]">
